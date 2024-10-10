@@ -10,7 +10,7 @@ spec:
     - port: 5005
       name: http
   externalIPs:
-    - 192.168.1.9
+    - 44.211.155.92
   selector:
     app: my-website
 ---
