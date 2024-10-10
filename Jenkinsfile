@@ -8,7 +8,7 @@ pipeline {
       }
     stage('Docker Build') {
       steps {
-        sh "cd my-website"
+        sh "ls -a"
         sh "docker build -t my-website:${env.BUILD_NUMBER} ."
       }
     }
