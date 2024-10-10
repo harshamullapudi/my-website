@@ -1,4 +1,7 @@
 pipeline {
+   environment {
+        KUBECONFIG = '/home/ubuntu/.kube/config'
+    }
   agent any
   stages {
      stage('Checkout'){
@@ -25,7 +28,8 @@ pipeline {
     }
     stage('Apply Kubernetes Files') {
       steps {
-        sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl --kubeconfig /home/ubuntu/.kube/config apply -f -' 
+         sh 'export KUBECONFIG=/home/ubuntu/.kube/config'
+        sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -' 
       }
     }
   }
