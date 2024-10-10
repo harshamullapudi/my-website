@@ -25,7 +25,7 @@ pipeline {
     }
     stage('Apply Kubernetes Files') {
       steps {
-        sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml apply -f -' 
+        sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl --kubeconfig~/.kube/config apply -f -' 
       }
     }
   }
