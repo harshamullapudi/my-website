@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-website
+  labels:
+    app: my-website
+    service: my-website
+spec:
+  ports:
+    - port: 5005
+      name: http
+  externalIPs:
+    - 192.168.1.9
+  selector:
+    app: my-website
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-website
+  labels:
+    app: my-website
+    #version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-website
+      #version: v1
+  template:
+    metadata:
+      labels:
+        app: my-website
+        #version: v1  
+    spec:
+      containers:
+        - name: my-website
+          image: localhost:5000/my-website:{{BUILD_NUMBER}}
+          #imagePullPolicy: IfNotPresent #Always
+          ports:
+            - containerPort: 5005
