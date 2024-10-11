@@ -6,11 +6,12 @@ metadata:
     app: my-website
     service: my-website
 spec:
+  type: LoadBalancer
   ports:
     - port: 5005
       name: http
   externalIPs:
-    - 44.211.155.92
+    - 44.212.31.19
   selector:
     app: my-website
 ---
